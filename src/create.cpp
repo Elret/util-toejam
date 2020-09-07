@@ -14,11 +14,10 @@ bool Create::create_project() {
 }
 
 void Create::create_cpp_file() {
-  ofstream ofile;
+  std::ofstream ofile;
   std::string file_name_cpp = "src/";
   file_name_cpp.append(project_name);
   file_name_cpp.append(".cpp");
-  ofstream ofile;
   ofile.open(file_name_cpp);
 }
 
@@ -26,7 +25,7 @@ void Create::create_h_file() {
   std::string file_name_h = "src/";
   file_name_h.append(project_name);
   file_name_h.append(".h");
-  ofstream ofile;
+  std::ofstream ofile;
   ofile.open(file_name_h);
 }
 
