@@ -5,35 +5,41 @@ Args args;
 args.set_false_variables();
   for (int i = 0; i < argc; i++) {
     std::cout << argv[i] << std::endl;
-
-    if (argv[i] == "create") {
+    std::string argument = argv[i];
+    if (argument == "create") {
       args.create = true;
       if (!args.check_for_i(i,argc))
       return 0; //todo: Add error logging.
       pass_name = argv[i+1];
     }
-    if (argv[i] == "add") {
+    if (argument == "add") {
       args.add_file = true;
       if (!args.check_for_i(i,argc))
       return 0; //todo: Add error logging.
       pass_name = argv[i+1];
     }
-    if (argv[i] == "header") {
+   if (argument == "header") {
       args.add_header = true;
       if (!args.check_for_i(i,argc))
       return 0; //todo: Add error logging.
       pass_name = argv[i+1];
     }
-    if (argv[i] == "spec") {
+   if (argument == "spec") {
       args.spec = true;
     }
-    if (argv[i] == "author") {
+   if (argument == "author") {
       args.add_author = true;
     }
-    if (argv[i] == "--global") {
+   if (argument == "--global") {
       args.global = true;
     }
+   if (argument == "--debug") {
+      args.debug = true;
+    }
+
   }
+
+  std::cout<< pass_name << "\n";
 
   if (args.create) {
     Create create(pass_name);
@@ -47,4 +53,8 @@ args.set_false_variables();
     Create create(pass_name);
     create.create_header_file();
   }
+  else {
+     Usage usage;
+     usage.run_usage();
+    }
 }

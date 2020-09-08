@@ -14,6 +14,7 @@ class Args
   bool spec;
   bool add_author;
   bool global;
+  bool debug;
   std::string str;
   int arg_limit();
   bool check_for_i(int, int);
