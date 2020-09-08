@@ -4,7 +4,6 @@ int main(int argc, char *argv[]) {
 Args args;
 args.set_false_variables();
   for (int i = 0; i < argc; i++) {
-    std::cout << argv[i] << std::endl;
     std::string argument = argv[i];
     if (argument == "create") {
       args.create = true;
@@ -36,10 +35,7 @@ args.set_false_variables();
    if (argument == "--debug") {
       args.debug = true;
     }
-
   }
-
-  std::cout<< pass_name << "\n";
 
   if (args.create) {
     Create create(pass_name);
