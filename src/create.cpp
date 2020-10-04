@@ -46,6 +46,6 @@ void Create::add_file() {
     create_h_file();
 }
 
-void add_lib() {
+void Create::add_lib() {
     //todo: add external library to makefile.
 }

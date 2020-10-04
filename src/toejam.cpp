@@ -14,9 +14,9 @@ int main(int argc, char *argv[]) {
     else if (args.add == true) {
         create.add_file();
     }
-    //else if (args.add_lib == true) {
-    //    create.add_lib();
-    //}
+    else if (args.add_lib == true) {
+        create.add_lib();
+    }
     else if (args.help == true) {
         //todo: create usage file.
     }
