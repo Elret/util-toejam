@@ -14,7 +14,13 @@ std::string output_cpp();
 
 public:
 Create(std::string);
-bool create_project();
+void create_cpp_file();
+void create_h_file();
+void create_makefile();
+void create_project();
+void add_file();
+void add_lib();
+
 
 };
 #endif

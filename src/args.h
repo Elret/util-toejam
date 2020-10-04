@@ -18,6 +18,7 @@ class Args {
     bool help;
 
     bool parse_args(int argc, char *argv[]);
+    std::string return_project_name();
 };
 
 

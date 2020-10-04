@@ -36,3 +36,7 @@ bool Args::parse_name(char *argv[]) {
     project_name = argv[2];
     return true;
 }
+
+std::string Args::return_project_name() {
+    return project_name;
+}
