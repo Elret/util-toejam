@@ -25,13 +25,25 @@ void Create::create_h_file() {
 }
 
 void Create::create_makefile() {
-    //todo: create makefile.
+    Makefile makefile;
+    makefile.create_makefile(project_name);
+}
+
+void Create::init_project() {
+    boost::filesystem::create_directory(".toejam");
+    boost::filesystem::create_directory(".toejam/build"); 
+    boost::filesystem::create_directory(".toejam/log");
+    //todo: create logging eventually.
+
 }
 
 void Create::create_project() {
     boost::filesystem::create_directory("src");
     create_cpp_file();
     create_h_file();
+    init_project();
+    create_makefile();
+    
 }
 
 std::string Create::output_cpp() {

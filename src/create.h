@@ -5,18 +5,20 @@
 #include <fstream>
 #include <string>
 #include <boost/filesystem.hpp>
+#include "makefile.h"
 
 
 class Create {
 private:
 std::string project_name;
 std::string output_cpp();
-
-public:
-Create(std::string);
 void create_cpp_file();
 void create_h_file();
 void create_makefile();
+void init_project();
+
+public:
+Create(std::string);
 void create_project();
 void add_file();
 void add_lib();

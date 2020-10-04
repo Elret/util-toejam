@@ -1,20 +1,29 @@
 CC = g++
-CLAGS = 
-DEPS = $(wildcard src/*.h)
-OBJ = $(wildcard src/*.cpp)
+CFLAGS = 
+LIBS = -lboost_filesystem
 
+SRC := src
+BUILD := .toejam/build
+HEADERS := $(wildcard $(SRC)/*.h)
 
-LIBS= -lboost_filesystem
+SOURCES := $(wildcard $(SRC)/*.cpp)
+OBJECTS := $(patsubst $(SRC)/%.cpp, $(BUILD)/%.o, $(SOURCES))
 
+toejam-dev: $(OBJECTS)
+	$(CC) $^ -o bin/$@ $(LIBS)
 
-%.o: %.cpp $(DEPS)
-	$(CC) -c -o $@ $< $(CFLAGS) $(LIBS)
-
-toejam: $(OBJ)
-	$(CC) -o bin/$@ $^ $(CFLAGS) $(LIBS)
-
+$(BUILD)/%.o: $(SRC)/%.cpp $(HEADERS)
+	$(CC) -I $(SRC) -c $< -o $@ $(LIBS)
+	
 .PHONY: clean
 
-clean: 
-	rm -f src/*.o
-	rm -f toejam
+clean:
+	rm -f .toejam/build/*.o 
+	rm -f bin/toejam-dev
+
+.PHONY: clean_bin
+
+clean_bin:
+	rm -rf bin/.toejam
+	rm bin/Makefile
+	rm -rf bin/src
