@@ -8,8 +8,9 @@ class Makefile {
     private:
     
     public:
+    void init_file_toejam(std::string);
     void create_makefile(std::string);
-    void init_makefile(std::string);
+    void build_makefile();
 };
 
 #endif
