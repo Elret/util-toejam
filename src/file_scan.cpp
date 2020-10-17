@@ -11,12 +11,12 @@ void File_Scan::search() {
         std::string file_name;
         for (boost::filesystem::directory_entry& x : boost::filesystem::directory_iterator(p)) {
             if (match_file_extension(x) == 0) {
-                std::string pass_string = stream_it(x);
-                cpp_list.add_to_list(pass_string);
+                boost::filesystem::path q(x);
+                cpp_list.add_to_list(q.filename().string());
             }
             else if (match_file_extension(x) == 1) {
-                std::string pass_string = stream_it(x);
-                h_list.add_to_list(pass_string);
+                boost::filesystem::path q(x);
+                h_list.add_to_list(q.filename().string());
             }
             else if (match_file_extension(x) == 2) {
             }
