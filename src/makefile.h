@@ -4,11 +4,14 @@
 #include <string>
 #include <fstream>
 
+#include "linkedlist.h"
+#include "file_scan.h"
+
 class Makefile {
     private:
     
     public:
-    void init_file_toejam(std::string);
+    void create_project_file(std::string);
     void create_makefile(std::string);
     void build_makefile();
 };

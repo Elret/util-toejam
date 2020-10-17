@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = 
+CFLAGS = -Wall
 LIBS = -lboost_filesystem
 
 SRC := src
@@ -10,10 +10,10 @@ SOURCES := $(wildcard $(SRC)/*.cpp)
 OBJECTS := $(patsubst $(SRC)/%.cpp, $(BUILD)/%.o, $(SOURCES))
 
 toejam-dev: $(OBJECTS)
-	$(CC) $^ -o bin/$@ $(LIBS)
+	$(CC) $(CFLAGS) $^ -o bin/$@ $(LIBS)
 
 $(BUILD)/%.o: $(SRC)/%.cpp $(HEADERS)
-	$(CC) -I $(SRC) -c $< -o $@ $(LIBS)
+	$(CC) -I $(CFLAGS) $(SRC) -c $< -o $@ $(LIBS)
 	
 .PHONY: clean
 
