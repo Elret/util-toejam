@@ -1,25 +1,28 @@
 #include "file_scan.h"
 
-File_Scan::File_Scan(Linked_List &h_link, Linked_List &cpp_link) {
-h_link = h_list;
-cpp_link = cpp_list;
+File_Scan::File_Scan(Linked_List *h_link, Linked_List *cpp_link) {
+h_list = h_link;
+cpp_list = cpp_link;
 }
 
 void File_Scan::search() {
-    boost::filesystem::path p;
+
+    boost::filesystem::path p("src");
     if(boost::filesystem::exists(p)) {
         std::string file_name;
         for (boost::filesystem::directory_entry& x : boost::filesystem::directory_iterator(p)) {
             if (match_file_extension(x) == 0) {
-                boost::filesystem::path q(x);
-                cpp_list.add_to_list(q.filename().string());
+
             }
             else if (match_file_extension(x) == 1) {
                 boost::filesystem::path q(x);
-                h_list.add_to_list(q.filename().string());
+                cpp_list->add_to_list(q.filename().string());
             }
             else if (match_file_extension(x) == 2) {
+                boost::filesystem::path q(x);
+                h_list->add_to_list(q.filename().string());
             }
+            
         }
     }
 }

@@ -16,6 +16,7 @@ void create_cpp_file();
 void create_h_file();
 void create_makefile();
 void init_project();
+void create_project_file();
 
 public:
 Create(std::string);

@@ -42,7 +42,9 @@ void Create::create_project() {
     create_cpp_file();
     create_h_file();
     init_project();
+    add_lib();
     create_makefile();
+    create_project_file();
     
 }
 
@@ -59,5 +61,16 @@ void Create::add_file() {
 }
 
 void Create::add_lib() {
-    //todo: add external library to makefile.
+    std::ofstream file;
+    file.open(".toejam/libs");
+    std::string output = "-lboost_filesystem";
+    file << output;
+    file.close();
+}
+
+void Create::create_project_file() {
+    std::ofstream file;
+    file.open(".toejam/project");
+    file << project_name;
+    file.close();
 }

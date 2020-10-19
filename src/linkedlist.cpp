@@ -10,16 +10,17 @@ void Linked_List::add_to_list(std::string passed_string) {
         current = current->next;
     }
     current->line = passed_string;
-    current->next = new Node;
+    current->next = new Node ;
     current = current->next;
     current->next = 0;
 }
 
-bool Linked_List::read_from_list(std::string &passed_string) {
+bool Linked_List::read_from_list(std::string *passed_string) {
     if (current->next == 0) {
+        *passed_string = "Broken List";
         return false;
     }
-        passed_string = current->line;
+        *passed_string = current->line;
         current = current->next;
         return true;
 
