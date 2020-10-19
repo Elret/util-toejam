@@ -2,8 +2,8 @@
 
 int main(int argc, char *argv[]) {
     Args args;
-    if (!args.parse_args(argc, argv))
-    {
+    
+    if (!args.parse_args(argc, argv)) {
         std::cout << "Failed to parse args." << std::endl;
     }
     
@@ -17,8 +17,13 @@ int main(int argc, char *argv[]) {
     else if (args.add_lib == true) {
         create.add_lib();
     }
-    else if (args.help == true) {
-        //todo: create usage file.
+    else if(args.build == true) {
+        create.build();
     }
+    else if (args.help == true) {
+        Usage usage;
+        usage.show();
+    }
+
 
 }

@@ -1,10 +1,16 @@
 #include "args.h"
 
 bool Args::parse_args(int argc, char *argv[]) {
-    if (argc > 3 || argc < 3) {
+    std::string is_help = argv[1];
+    if (is_help == "help") {
+        std::cout << is_help;
+        if (!parse_command(argv)) {
+            return true;
+        }        
+    } else if (argc > 3 || argc < 3) {
         std::cout << "Invalid number of args" << std::endl;
         return false;
-    }
+    } 
     if (!parse_command(argv)) {
         return false;
     }
@@ -26,6 +32,8 @@ bool Args::parse_command(char *argv[]) {
         add_lib = true;
     } else if (parse_command_name =="help") {
         help = true;
+    } else if (parse_command_name == "build") {
+        build = true;
     } else {
         return false;
     }

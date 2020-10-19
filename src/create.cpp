@@ -48,6 +48,11 @@ void Create::create_project() {
     
 }
 
+void Create::build() {
+    Makefile makefile;
+    makefile.build_makefile();
+}
+
 std::string Create::output_cpp() {
     std::string string_to_return = "#include \"";
     string_to_return.append(project_name);

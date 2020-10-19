@@ -23,6 +23,7 @@ Create(std::string);
 void create_project();
 void add_file();
 void add_lib();
+void build();
 
 
 };
