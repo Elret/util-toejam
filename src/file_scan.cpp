@@ -16,7 +16,7 @@ void File_Scan::search() {
             }
             else if (match_file_extension(x) == 1) {
                 boost::filesystem::path q(x);
-                cpp_list->add_to_list(q.filename().string());
+                cpp_list->add_to_list(q.stem().string());
             }
             else if (match_file_extension(x) == 2) {
                 boost::filesystem::path q(x);

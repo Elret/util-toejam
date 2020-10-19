@@ -13,6 +13,7 @@ Node *next;
 Node *start;
 Node *current;
 
+
 public:
 Linked_List();
 void add_to_list(std::string);

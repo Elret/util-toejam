@@ -45,8 +45,11 @@ void Makefile::build_makefile() {
 
     std::ofstream write_file;
     write_file.open("Makefile");
-    write_file << "CC = GCC" << std::endl;
+    write_file << "CC = g++" << std::endl;
+    write_file << "SRC = src/" << std::endl;
+    write_file << "BUILD = .toejam/build/" << std::endl;
     write_file << "LIBS = ";
+
     while (ll_libs.read_from_list(line)) {
         write_file << *line << " ";
     }
@@ -61,9 +64,34 @@ void Makefile::build_makefile() {
     cpp_list->reset_list();
     write_file << project_name << ":";
     while (cpp_list->read_from_list(line)) {
-    write_file << " " << *line;
+    write_file << " $(BUILD)" << *line <<".o";
     }
     write_file << std::endl;
-
+    write_file << return_main_compile_str(project_name) << std::endl << std::endl;
+    cpp_list->reset_list();
+    while (cpp_list->read_from_list(line)) {
+        write_file << return_o_compile_str(*line) << std::endl << std::endl;
+    }
 }
 
+std::string Makefile::return_main_compile_str(std::string project_name) {
+    std::string return_str;
+    return_str = "\t$(CC) -o ";
+    return_str.append(project_name);
+    return_str.append(" $^");
+    return_str.append(" $(LIBS)");
+    return return_str;
+}
+
+std::string Makefile::return_o_compile_str(std::string o_name) {
+    std::string return_str;
+    return_str = "$(BUILD)";
+    return_str.append(o_name);
+    return_str.append(".o: $(SRC)");
+    return_str.append(o_name);
+    return_str.append(".cpp $(SRC)$(DEPS)\n");
+    return_str.append("\t$(CC) -c $(SRC)");
+    return_str.append(o_name);
+    return_str.append(".cpp -o $@");
+    return return_str;
+}

@@ -58,6 +58,8 @@ std::string Create::output_cpp() {
 void Create::add_file() {
     create_cpp_file();
     create_h_file();
+    Makefile makefile;
+    makefile.build_makefile();
 }
 
 void Create::add_lib() {

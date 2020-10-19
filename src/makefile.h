@@ -9,7 +9,9 @@
 
 class Makefile {
     private:
-    
+    std::string return_main_compile_str(std::string project_name);
+    std::string return_o_compile_str(std::string o_name);
+
     public:
     void create_project_file(std::string);
     void create_makefile(std::string);
