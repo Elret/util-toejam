@@ -4,6 +4,15 @@ Linked_List::Linked_List() {
     start = new Node;
 }
 
+Linked_List::~Linked_List() {
+    delete start;
+    
+}
+
+Linked_List::Node::~Node() {
+    delete next;
+}
+
 void Linked_List::add_to_list(std::string passed_string) {
     current = start;
     while(current->next != 0){

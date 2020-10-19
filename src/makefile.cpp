@@ -6,16 +6,19 @@ void Makefile::create_project_file(std::string input_name) {
     file << input_name;
     file.close();
     std::ofstream libs_file;
-    /*libs_file.open(".toejam/libs");
-    libs_file << " ";
-    libs_file.close();
-*/
 }
 
+void Makefile::create_libs_file() {
+    std::ofstream file;
+    file.open(".toejam/libs");
+    file << " ";
+    file.close();
+}
 
 
 void Makefile::create_makefile(std::string input_name) {
        create_project_file(input_name);
+       create_libs_file();
        build_makefile();
 }
 
@@ -58,7 +61,7 @@ void Makefile::build_makefile() {
     write_file << "DEPS = ";
     h_list->reset_list();
     while (h_list->read_from_list(line)) {
-        write_file << *line << " ";
+        write_file << "$(SRC)" << *line << " ";
     }
     write_file << std::endl << std::endl;
     cpp_list->reset_list();
@@ -89,7 +92,7 @@ std::string Makefile::return_o_compile_str(std::string o_name) {
     return_str.append(o_name);
     return_str.append(".o: $(SRC)");
     return_str.append(o_name);
-    return_str.append(".cpp $(SRC)$(DEPS)\n");
+    return_str.append(".cpp $(DEPS)\n");
     return_str.append("\t$(CC) -c $(SRC)");
     return_str.append(o_name);
     return_str.append(".cpp -o $@");

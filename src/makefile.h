@@ -14,6 +14,7 @@ class Makefile {
 
     public:
     void create_project_file(std::string);
+    void create_libs_file();
     void create_makefile(std::string);
     void build_makefile();
 };
