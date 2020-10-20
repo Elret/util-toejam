@@ -24,6 +24,10 @@ int main(int argc, char *argv[]) {
         Usage usage;
         usage.show();
     }
+    else {
+        Usage usage;
+        usage.show();
+    }
 
 
 }
