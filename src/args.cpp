@@ -1,6 +1,10 @@
 #include "args.h"
 
 bool Args::parse_args(int argc, char *argv[]) {
+    if (argc ==1 ) {
+        help = true;
+        return true;
+    }
     std::string is_help;
     is_help = argv[1];
     if (is_help == "help" || is_help == "build") {

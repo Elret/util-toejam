@@ -8,7 +8,7 @@ class Args {
     private:
     bool parse_command(char *argv[]);
     bool parse_name(char *argv[]);
-    std::string project_name = "empty";
+    std::string project_name;
 
 
     public:
