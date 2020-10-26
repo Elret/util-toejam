@@ -29,4 +29,4 @@ bin:
 	
 install:
 	mkdir -p $(DESTDIR)/usr/bin
-	install -m 0755 toejam $(DESTDIR)/usr/bin/toejam
+	install -m 0755 bin/toejam $(DESTDIR)/usr/bin/toejam
