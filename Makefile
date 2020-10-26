@@ -10,7 +10,7 @@ SOURCES := $(wildcard $(SRC)/*.cpp)
 OBJECTS := $(patsubst $(SRC)/%.cpp, $(BUILD)/%.o, $(SOURCES))
 
 toejam: $(OBJECTS)
-	$(CC) $(CFLAGS) -g -o $@ $^ $(LIBS)
+	$(CC) $(CFLAGS) -g -o bin/$@ $^ $(LIBS)
 
 $(BUILD)/%.o: $(SRC)/%.cpp $(HEADERS)
 	$(CC) -I $(CFLAGS) $(SRC) -c $< -o $@ $(LIBS)
@@ -19,14 +19,13 @@ $(BUILD)/%.o: $(SRC)/%.cpp $(HEADERS)
 
 clean:
 	rm -f .toejam/build/*.o 
-	rm -f bin/toejam-dev
+	rm -f bin/toejam
 
-.PHONY: clean_bin
+.PHONY: bin
 
-clean_bin:
-	rm -rf bin/.toejam
-	rm bin/Makefile
-	rm -rf bin/src
+bin:
+	rm -rf bin
+	mkdir bin
 	
 install:
 	mkdir -p $(DESTDIR)/usr/bin
