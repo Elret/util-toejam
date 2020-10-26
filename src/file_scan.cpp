@@ -42,10 +42,3 @@ int File_Scan::match_file_extension(boost::filesystem::directory_entry file_name
     }
 }
 
-std::string File_Scan::stream_it(boost::filesystem::directory_entry &x) {
-    std::string return_string;
-    std::stringstream ss;
-    ss << x;
-    ss >> return_string;
-    return return_string;
-}
