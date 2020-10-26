@@ -1,4 +1,4 @@
-#ToeJam! v.0.8.2
+#ToeJam! v.0.8.3
 
 Toejam was created to ease the process of creating projects for c++ by initializing a build folder, auto building a makefile, and creating new .cpp and .h files.
 
