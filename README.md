@@ -28,3 +28,5 @@ Change Log:
 -Fixed bug that would crash program if ran without arguments.
 
 -Cleaned up some of the code base.
+
+-Added recursive directory scanning
