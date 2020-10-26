@@ -10,7 +10,7 @@
 class Makefile {
     private:
     std::string return_main_compile_str(std::string project_name);
-    std::string return_o_compile_str(std::string o_name);
+    std::string return_o_compile_str(std::string o_name, std::string o_stem);
     std::string return_project_name();
     std::string return_project_libs();
 

@@ -47,13 +47,13 @@ void Makefile::build_makefile() {
     std::string *line = new std::string;
     Linked_List *cpp_list = new Linked_List;
     Linked_List *h_list = new Linked_List;
-    File_Scan fs(h_list, cpp_list);
+    Linked_List *cpp_list_stem = new Linked_List;
+    File_Scan fs(h_list, cpp_list, cpp_list_stem);
     fs.search();
 
     std::ofstream write_file;
     write_file.open("Makefile");
     write_file << "CC = g++" << std::endl;
-    write_file << "SRC = src/" << std::endl;
     write_file << "BUILD = .toejam/build/" << std::endl;
     write_file << "LIBS = ";
 
@@ -63,19 +63,23 @@ void Makefile::build_makefile() {
     write_file << "DEPS = ";
     h_list->reset_list();
     while (h_list->read_from_list(line)) {
-        write_file << "$(SRC)" << *line << " ";
+        write_file << *line << " ";
     }
     write_file << std::endl << std::endl;
     cpp_list->reset_list();
+    cpp_list_stem->reset_list();
     write_file <<  return_project_name() << ":";
-    while (cpp_list->read_from_list(line)) {
+    while (cpp_list_stem->read_from_list(line)) {
     write_file << " $(BUILD)" << *line <<".o";
     }
     write_file << std::endl;
     write_file << return_main_compile_str(return_project_name()) << std::endl << std::endl;
     cpp_list->reset_list();
+    cpp_list_stem->reset_list();
     while (cpp_list->read_from_list(line)) {
-        write_file << return_o_compile_str(*line) << std::endl << std::endl;
+        std::string *stem = new std::string;
+        cpp_list_stem->read_from_list(stem);
+        write_file << return_o_compile_str(*line, *stem) << std::endl << std::endl;
     }
     write_file.close();
 }
@@ -91,15 +95,16 @@ std::string Makefile::return_main_compile_str(std::string project_name) {
     return return_str;
 }
 
-std::string Makefile::return_o_compile_str(std::string o_name) {
+std::string Makefile::return_o_compile_str(std::string o_name, std::string o_stem) {
     std::string return_str;
     return_str = "$(BUILD)";
+    return_str.append(o_stem);
+    return_str.append(".o: ");
     return_str.append(o_name);
-    return_str.append(".o: $(SRC)");
+    return_str.append(" $(DEPS)\n");
+    return_str.append("\t$(CC) -c ");
     return_str.append(o_name);
-    return_str.append(".cpp $(DEPS)\n");
-    return_str.append("\t$(CC) -c $(SRC)");
-    return_str.append(o_name);
-    return_str.append(".cpp -o $@");
+    return_str.append(" -o $@");
     return return_str;
 }
+

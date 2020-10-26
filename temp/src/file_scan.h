@@ -12,7 +12,6 @@ private:
 Linked_List *h_list;
 Linked_List *cpp_list;
 Linked_List *cpp_list_stem;
-
 std::string pass_string;
 
 public:

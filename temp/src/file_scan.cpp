@@ -1,9 +1,8 @@
 #include "file_scan.h"
 
-File_Scan::File_Scan(Linked_List *h_link, Linked_List *cpp_link, Linked_List *cpp_link_stem) {
+File_Scan::File_Scan(Linked_List *h_link, Linked_List *cpp_link) {
 h_list = h_link;
 cpp_list = cpp_link;
-cpp_list_stem = cpp_link_stem;
 }
 
 void File_Scan::search() {
@@ -17,7 +16,6 @@ void File_Scan::search() {
         while (iter != end) {
             if (match_file_extension(iter->path().string()) == 1) {
                 cpp_list->add_to_list(iter->path().string());
-                cpp_list_stem->add_to_list(iter->path().stem().string());
             }
             else if (match_file_extension(iter->path().string()) == 2) {
                 h_list->add_to_list(iter->path().string());
