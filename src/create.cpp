@@ -39,6 +39,7 @@ void Create::init_project() {
 
 void Create::create_project() {
     boost::filesystem::create_directory("src");
+    boost::filesystem::create_directory("bin");
     create_cpp_file();
     create_h_file();
     init_project();

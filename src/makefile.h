@@ -13,6 +13,7 @@ class Makefile {
     std::string return_o_compile_str(std::string o_name, std::string o_stem);
     std::string return_project_name();
     std::string return_project_libs();
+    std::string make_clean();
 
 
     public:

@@ -81,6 +81,7 @@ void Makefile::build_makefile() {
         cpp_list_stem->read_from_list(stem);
         write_file << return_o_compile_str(*line, *stem) << std::endl << std::endl;
     }
+    write_file << make_clean();
     write_file.close();
 }
 
@@ -88,7 +89,7 @@ void Makefile::build_makefile() {
 
 std::string Makefile::return_main_compile_str(std::string project_name) {
     std::string return_str;
-    return_str = "\t$(CC) -o ";
+    return_str = "\t$(CC) -o bin/";
     return_str.append(project_name);
     return_str.append(" $^");
     return_str.append(" $(LIBS)");
@@ -108,3 +109,12 @@ std::string Makefile::return_o_compile_str(std::string o_name, std::string o_ste
     return return_str;
 }
 
+std::string Makefile::make_clean() {
+    std::string return_str;
+    return_str.append(".PHONY: clean\n\n");
+    return_str.append("clean:\n");
+    return_str.append("\trm .toejam/build/*.o\n");
+    return_str.append("\trm -rf bin\n");
+    boost::filesystem::create_directory("bin");
+    return return_str;
+}
