@@ -5,7 +5,6 @@ void Makefile::create_project_file(std::string input_name) {
     file.open(".toejam/project");
     file << input_name;
     file.close();
-    std::ofstream libs_file;
 }
 
 void Makefile::create_libs_file() {
@@ -76,6 +75,8 @@ void Makefile::build_makefile() {
         write_file << return_o_compile_str(*line) << std::endl << std::endl;
     }
 }
+
+
 
 std::string Makefile::return_main_compile_str(std::string project_name) {
     std::string return_str;
