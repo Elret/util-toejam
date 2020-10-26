@@ -18,8 +18,7 @@ Example usage:
 
 toejam build
 
-This command would parse the files in the src directory and build a Makefile containing any .cpp and .h files.
-Note: It will only parse the parent directory. As of right now it will not parse child directories.
+This command would parse the files in the src directory, and any child directories, then build a Makefile containing any .cpp and .h files.
 
 Change Log:
 
