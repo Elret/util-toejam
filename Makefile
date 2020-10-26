@@ -28,6 +28,6 @@ clean_bin:
 	rm bin/Makefile
 	rm -rf bin/src
 	
-%install:
+install:
 	mkdir -p $(DESTDIR)/usr/bin
 	install -m 0755 toejam $(DESTDIR)/usr/bin/toejam
