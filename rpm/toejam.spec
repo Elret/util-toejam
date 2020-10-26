@@ -1,10 +1,11 @@
 Name:           toejam
-Version:        0.8.0
+Version:        0.8.2
 Release:        1%{?dist}
 Summary:        Toejam C++ file project setup application.
 
 License:        GPLv2
-Source0:	https://github.com/Elret/toejam-0.8.0.tar.xz
+Source0:	https://github.com/Elret/util-toejam/toejam-0.8.2.tar.xz
+
 
 BuildRequires:  g++
 BuildRequires:  make
@@ -25,9 +26,9 @@ make %{?_smp_mflags}
 %make_install
 
 %files
-%license LICENSE
 %{_bindir}/%{name}
 
 %changelog
 * Tue Oct 20 2020 Elret <dev@noun37.net> - 0.8.0
 - Test build of Toejam package.
+- Fixed no-arguments bug and cleaned up code.
