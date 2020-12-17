@@ -68,6 +68,15 @@ void Create::add_file() {
     makefile.build_makefile();
 }
 
+void::Create add_cflag() {
+    std::ofstream file;
+    file.open(".toejam/cflag". std::ios::app);
+    file << project_name << " ";
+    file.close();
+    Makefile makefile;
+    makefile.build_makefile();
+}
+
 void Create::add_lib() {
     std::ofstream file;
     file.open(".toejam/libs", std::ios::app);

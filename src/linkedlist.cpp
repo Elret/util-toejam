@@ -5,12 +5,15 @@ Linked_List::Linked_List() {
 }
 
 Linked_List::~Linked_List() {
+    current = 0;
     delete start;
     
 }
 
 Linked_List::Node::~Node() {
-    delete next;
+    if (next != 0) {
+        delete next;
+    }
 }
 
 void Linked_List::add_to_list(std::string passed_string) {

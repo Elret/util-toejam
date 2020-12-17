@@ -34,8 +34,10 @@ bool Args::parse_command(char *argv[]) {
         create = true;
     } else if (parse_command_name =="add") {
         add = true;
-    } else if (parse_command_name =="add_lib") {
-        add_lib = true;
+    } else if (parse_command_name == "cflag") {
+        cflag = true;
+    } else if (parse_command_name =="lib") {
+        lib = true;
     } else if (parse_command_name =="help") {
         help = true;
     } else if (parse_command_name == "build") {

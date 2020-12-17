@@ -13,7 +13,7 @@ toejam: $(OBJECTS)
 	$(CC) $(CFLAGS) -g -o bin/$@ $^ $(LIBS)
 
 $(BUILD)/%.o: $(SRC)/%.cpp $(HEADERS)
-	$(CC) -I $(CFLAGS) $(SRC) -c $< -o $@ $(LIBS)
+	$(CC) -g -I $(CFLAGS) $(SRC) -c $< -o $@ $(LIBS)
 	
 .PHONY: clean
 

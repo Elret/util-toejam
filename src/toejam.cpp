@@ -10,21 +10,18 @@ int main(int argc, char *argv[]) {
     Create create(args.return_project_name());
     if (args.create == true) {
         create.create_project();
-    }
-    else if (args.add == true) {
+    } else if (args.add == true) {
         create.add_file();
-    }
-    else if (args.add_lib == true) {
+    }else if (args.cflag == true) {
+        create.add_cflag();
+    } else if (args.lib == true) {
         create.add_lib();
-    }
-    else if(args.build == true) {
+    } else if(args.build == true) {
         create.build();
-    }
-    else if (args.help == true) {
+    } else if (args.help == true) {
         Usage usage;
         usage.show();
-    }
-    else {
+    } else {
         Usage usage;
         usage.show();
     }

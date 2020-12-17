@@ -6,7 +6,8 @@ void Usage::show() {
     "<Command>\n\n"
     "create:\t\t\tCreates a new project, including setting up directories and creating a makefile\n"
     "add:\t\t\tAdds a new .cpp and .h file to the src directory\n"
-    "add_lib:\t\tAdds a library include in the makefile. IE: -lboost_filesystem\n"
+    "cflag:\t\t\tAdds CFLAG to makefile.\n"
+    "lib:\t\t\tAdds a library include in the makefile. IE: -lboost_filesystem\n"
     "build:\t\t\tRebuilds the makefile.\n\n"
     "Example:\t\t\"toejam create myProject\"\n";
 }

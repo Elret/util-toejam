@@ -14,7 +14,8 @@ class Args {
     public:
     bool create;
     bool add;
-    bool add_lib;
+    bool cflag;
+    bool lib;
     bool help;
     bool build;
 

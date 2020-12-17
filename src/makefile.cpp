@@ -7,6 +7,13 @@ void Makefile::create_project_file(std::string input_name) {
     file.close();
 }
 
+void Makefile::create_cflag_file() {
+    std::ofstream file;
+    file.open(".toejam/cflag");
+    file << " ";
+    file.close();
+}
+
 void Makefile::create_libs_file() {
     std::ofstream file;
     file.open(".toejam/libs");
@@ -17,6 +24,7 @@ void Makefile::create_libs_file() {
 
 void Makefile::create_makefile(std::string input_name) {
        create_project_file(input_name);
+       create_cflag_file();
        create_libs_file();
        build_makefile();
 }
@@ -28,6 +36,19 @@ std::string Makefile::return_project_name() {
     getline(file, line);
     file.close();
     return line;
+}
+
+std::string Makefile::return_project_cflag() {
+    std::ifstream file;
+    file.open(".toejam/cflag");
+    std::string line;
+    std::string return_str;
+    while(getline(file, line)) {
+        return_str.append(line);
+        return_str.append(" ");
+    }
+    file.close();
+    return return_str;
 }
 
 std::string Makefile::return_project_libs() {
@@ -55,11 +76,8 @@ void Makefile::build_makefile() {
     write_file.open("Makefile");
     write_file << "CC = g++" << std::endl;
     write_file << "BUILD = .toejam/build/" << std::endl;
-    write_file << "LIBS = ";
-
-    write_file << return_project_libs();
-    
-    write_file << std::endl;
+    write_file << "CFLAG = " << return_project_cflag() << std::endl;
+    write_file << "LIBS = " << return_project_libs() << std::endl;
     write_file << "DEPS = ";
     h_list->reset_list();
     while (h_list->read_from_list(line)) {
@@ -76,13 +94,20 @@ void Makefile::build_makefile() {
     write_file << return_main_compile_str(return_project_name()) << std::endl << std::endl;
     cpp_list->reset_list();
     cpp_list_stem->reset_list();
+    std::string *stem = new std::string;
     while (cpp_list->read_from_list(line)) {
-        std::string *stem = new std::string;
         cpp_list_stem->read_from_list(stem);
         write_file << return_o_compile_str(*line, *stem) << std::endl << std::endl;
+        
     }
+    delete stem;
+    delete line;
+
     write_file << make_clean();
     write_file.close();
+
+    delete h_list;
+    delete cpp_list;
 }
 
 
