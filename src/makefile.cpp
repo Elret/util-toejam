@@ -140,6 +140,7 @@ std::string Makefile::make_clean() {
     return_str.append("clean:\n");
     return_str.append("\trm .toejam/build/*.o\n");
     return_str.append("\trm -rf bin\n");
+    return_str.append("\tmkdir bin\n");
     boost::filesystem::create_directory("bin");
     return return_str;
 }
