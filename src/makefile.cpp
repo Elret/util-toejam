@@ -114,7 +114,7 @@ void Makefile::build_makefile() {
 
 std::string Makefile::return_main_compile_str(std::string project_name) {
     std::string return_str;
-    return_str = "\t$(CC) -o bin/";
+    return_str = "\t$(CC) $(CFLAG) -o bin/";
     return_str.append(project_name);
     return_str.append(" $^");
     return_str.append(" $(LIBS)");

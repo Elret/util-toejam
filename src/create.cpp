@@ -68,9 +68,9 @@ void Create::add_file() {
     makefile.build_makefile();
 }
 
-void::Create add_cflag() {
+void Create::add_cflag() {
     std::ofstream file;
-    file.open(".toejam/cflag". std::ios::app);
+    file.open(".toejam/cflag", std::ios::app);
     file << project_name << " ";
     file.close();
     Makefile makefile;
