@@ -1,10 +1,10 @@
 Name:           toejam
-Version:        0.8.3
+Version:        0.8.4
 Release:        1%{?dist}
 Summary:        Toejam C++ file project setup application.
 
 License:        GPLv2
-Source0:	https://github.com/Elret/util-toejam/archive/toejam-0.8.3.tar.xz
+Source0:	https://github.com/Elret/util-toejam/archive/toejam-0.8.4.tar.xz
 
 
 BuildRequires:  g++
@@ -29,7 +29,6 @@ make %{?_smp_mflags}
 %{_bindir}/%{name}
 
 %changelog
-* Tue Oct 20 2020 Elret <dev@noun37.net> - 0.8.0
-- Test build of Toejam package.
-- Fixed no-arguments bug and cleaned up code.
-- Added recursive directory scanning.
+* Thu 12 17 2020 Elret <dev@noun37.net> - 0.8.4
+- Fixed makefile cleaning bin directory without rebuild
+- Added CFLAG option to build.

@@ -56,8 +56,16 @@ void Create::build() {
 
 std::string Create::output_cpp() {
     std::string string_to_return = "#include \"";
-    string_to_return.append(project_name);
+    
+    std::stringstream ss(project_name);
+    std::string buf;
+
+    while(getline(ss, buf, '/')) {
+
+    }
+    string_to_return.append(buf);
     string_to_return.append(".h\"");
+    
     return string_to_return;
 }
 

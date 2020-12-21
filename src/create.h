@@ -6,6 +6,7 @@
 #include <string>
 #include <boost/filesystem.hpp>
 #include "makefile.h"
+#include <sstream>
 
 
 class Create {
