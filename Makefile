@@ -1,32 +1,36 @@
 CC = g++
-CFLAGS = -Wall
-LIBS = -lboost_filesystem
+BUILD = .toejam/build/
+CFLAG =   
+LIBS =  -lboost_filesystem  
+DEPS = src/args.h src/create.h src/file_scan.h src/linkedlist.h src/makefile.h src/toejam.h src/usage.h 
 
-SRC := src
-BUILD := .toejam/build
-HEADERS := $(wildcard $(SRC)/*.h)
+toejam: $(BUILD)create.o $(BUILD)args.o $(BUILD)file_scan.o $(BUILD)linkedlist.o $(BUILD)makefile.o $(BUILD)toejam.o $(BUILD)usage.o
+	$(CC) $(CFLAG) -o bin/toejam $^ $(LIBS)
 
-SOURCES := $(wildcard $(SRC)/*.cpp)
-OBJECTS := $(patsubst $(SRC)/%.cpp, $(BUILD)/%.o, $(SOURCES))
+$(BUILD)create.o: src/create.cpp $(DEPS)
+	$(CC) -c src/create.cpp -o $@
 
-toejam: $(OBJECTS)
-	$(CC) $(CFLAGS) -g -o bin/$@ $^ $(LIBS)
+$(BUILD)args.o: src/args.cpp $(DEPS)
+	$(CC) -c src/args.cpp -o $@
 
-$(BUILD)/%.o: $(SRC)/%.cpp $(HEADERS)
-	$(CC) -g -I $(CFLAGS) $(SRC) -c $< -o $@ $(LIBS)
-	
+$(BUILD)file_scan.o: src/file_scan.cpp $(DEPS)
+	$(CC) -c src/file_scan.cpp -o $@
+
+$(BUILD)linkedlist.o: src/linkedlist.cpp $(DEPS)
+	$(CC) -c src/linkedlist.cpp -o $@
+
+$(BUILD)makefile.o: src/makefile.cpp $(DEPS)
+	$(CC) -c src/makefile.cpp -o $@
+
+$(BUILD)toejam.o: src/toejam.cpp $(DEPS)
+	$(CC) -c src/toejam.cpp -o $@
+
+$(BUILD)usage.o: src/usage.cpp $(DEPS)
+	$(CC) -c src/usage.cpp -o $@
+
 .PHONY: clean
 
 clean:
-	rm -f .toejam/build/*.o 
-	rm -f bin/toejam
-
-.PHONY: bin
-
-bin:
+	rm .toejam/build/*.o
 	rm -rf bin
 	mkdir bin
-	
-install:
-	mkdir -p $(DESTDIR)/usr/bin
-	install -m 0755 bin/toejam $(DESTDIR)/usr/bin/toejam
